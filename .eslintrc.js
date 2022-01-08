@@ -1,20 +1,17 @@
 module.exports = {
     root: true,
-    ignorePatterns: [
-        'projects/**/test.ts',
-        'projects/**/icons/all.ts',
-        'commitlint.config.js',
-        'prettier.config.js',
-    ],
     extends: ['@tinkoff/eslint-config-angular'],
+    ignorePatterns: ['projects/**/test.ts', 'projects/**/icons/all.ts'],
     parserOptions: {
         ecmaVersion: 2020,
-        project: ['./tsconfig.eslint.json'],
         sourceType: 'module',
+        project: [require.resolve('./tsconfig.eslint.json')],
     },
+    parser: '@typescript-eslint/parser',
     rules: {
         // TODO: move rules to @tinkoff/eslint-config-angular
         '@typescript-eslint/no-useless-constructor': 'off',
+        '@typescript-eslint/no-inferrable-types': ['error', {ignoreParameters: true}],
         '@typescript-eslint/explicit-member-accessibility': [
             'error',
             {accessibility: 'no-public'},
